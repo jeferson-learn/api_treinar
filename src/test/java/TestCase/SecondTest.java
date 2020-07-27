@@ -27,9 +27,19 @@ public class SecondTest {
                 .expectStatusCode(200)
                 .build();
     }
-    
+
     @Test
-    public void listarContatosId46StatusCode200Possitivo() {
+    public void listarContatosStatusCode200Positivo() {
+        given()
+                .spec(requestSpec)
+                .when()
+                .get()
+                .then()
+                .spec(responseSpec)
+                .statusCode(200);
+    }
+    @Test
+    public void listarContatosId46StatusCode200Positivo() {
         given()
                 .spec(requestSpec)
                 .when()
