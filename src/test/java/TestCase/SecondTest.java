@@ -35,6 +35,7 @@ public class SecondTest {
                 .when()
                 .get()
                 .then()
+                .log().body()
                 .spec(responseSpec)
                 .statusCode(200);
     }
