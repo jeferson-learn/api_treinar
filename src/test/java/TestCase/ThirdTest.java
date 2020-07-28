@@ -28,7 +28,7 @@ public class ThirdTest {
         JSONObject requestParamsJson = new JSONObject();
         requestParamsJson.put("name", "Automacao");
         requestParamsJson.put("last_name", "DBServer");
-        requestParamsJson.put("email", "jefy@test.com.br");
+        requestParamsJson.put("email", "jefy1@test.com.br");
         requestParamsJson.put("age", "27");
         requestParamsJson.put("phone", "99997788");
         requestParamsJson.put("address", "Rua DBServer");
