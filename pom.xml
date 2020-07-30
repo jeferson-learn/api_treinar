@@ -30,6 +30,11 @@
             <artifactId>json</artifactId>
             <version>20200518</version>
         </dependency>
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>json-schema-validator</artifactId>
+            <version>4.3.0</version>
+        </dependency>
     </dependencies>
 
 </project>
