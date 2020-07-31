@@ -50,7 +50,7 @@ public class FirstTest {
         .then()
                 .log().body()
                 .spec(responseSpecification)
-                .body(JsonSchemaValidator.matchesJsonSchemaInClasspath("Schemas" + File.separator + "ZipJsonSchema.json"))
+                .body(JsonSchemaValidator.matchesJsonSchemaInClasspath("Schemas" + File.separator + "ZipUSJsonSchema.json"))
                 .statusCode(200);
     }
 
@@ -64,6 +64,7 @@ public class FirstTest {
         .then()
                 .log().body()
                 .spec(responseSpecification)
+                .body(JsonSchemaValidator.matchesJsonSchemaInClasspath("Schemas" + File.separator + "ZipDEJsonSchema.json"))
                 .statusCode(200);
     }
 
@@ -77,6 +78,7 @@ public class FirstTest {
         .then()
                 .log().body()
                 .spec(responseSpecification)
+                .body(JsonSchemaValidator.matchesJsonSchemaInClasspath("Schemas" + File.separator + "ZipBRJsonSchema.json"))
                 .statusCode(200);
     }
 }
