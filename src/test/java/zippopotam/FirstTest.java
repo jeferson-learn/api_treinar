@@ -3,9 +3,13 @@ package zippopotam;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.http.ContentType;
+import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.io.File;
 
 import static io.restassured.RestAssured.given;
 
@@ -14,26 +18,65 @@ public class FirstTest {
     private static RequestSpecification requestSpecification;
     private static ResponseSpecification responseSpecification;
 
-    @Test
-    public void teste(){
+    @BeforeEach
+    public void setUp(){
         requestSpecification = new RequestSpecBuilder()
                 .setBaseUri("http://api.zippopotam.us")
-                .addHeader("Content-Type", "application/json")
-                .addHeader("Accept", "application/vnd.tasksmanager.v2")
                 .build();
 
         responseSpecification = new ResponseSpecBuilder()
                 .expectContentType(ContentType.JSON)
                 .expectStatusCode(200)
                 .build();
+    }
+
+    @Test
+    public void healthCheckTest(){
+        given()
+            .when()
+                .get("http://api.zippopotam.us")
+            .then()
+                .log().body()
+                .statusCode(200);
+    }
+
+    @Test
+    public void testeUS(){
 
         given()
                 .spec(requestSpecification)
         .when()
-                .get()
+                .get("/us/02178")
         .then()
                 .log().body()
-                .spec(responseSpecification);
+                .spec(responseSpecification)
+                .body(JsonSchemaValidator.matchesJsonSchemaInClasspath("Schemas" + File.separator + "ZipJsonSchema.json"))
+                .statusCode(200);
     }
 
+    @Test
+    public void testeDE(){
+
+        given()
+                .spec(requestSpecification)
+        .when()
+                .get("/DE/09429")
+        .then()
+                .log().body()
+                .spec(responseSpecification)
+                .statusCode(200);
+    }
+
+    @Test
+    public void testeBR(){
+
+        given()
+                .spec(requestSpecification)
+        .when()
+                .get("/BR/01000-000")
+        .then()
+                .log().body()
+                .spec(responseSpecification)
+                .statusCode(200);
+    }
 }
