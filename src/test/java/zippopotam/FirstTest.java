@@ -11,7 +11,8 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
-import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.*;
 
 public class FirstTest {
 
@@ -38,6 +39,23 @@ public class FirstTest {
             .then()
                 .log().body()
                 .statusCode(200);
+    }
+
+    @Test
+    public void get90210(){
+        given()
+                .spec(requestSpecification)
+        .when()
+                .get("/us/90210")
+        .then()
+//              parte body
+                .log().body()
+//                .body("places[0].state", containsString("California"));
+//                .body("places[0].state", equalTo("California"));
+                .body("places[0].'place name'", equalTo("Beverly Hills"));
+//                .body("places",hasSize(1));
+//                .log().headers()
+//                .header("Server.cloudflare", containsString("cloudflare"));
     }
 
     @Test
