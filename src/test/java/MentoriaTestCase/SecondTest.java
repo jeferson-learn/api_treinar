@@ -1,4 +1,4 @@
-package TestCase;
+package MentoriaTestCase;
 
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;

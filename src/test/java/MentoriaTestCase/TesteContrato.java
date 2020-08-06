@@ -1,4 +1,4 @@
-package TestCase;
+package MentoriaTestCase;
 
 import Models.CreateUserModel;
 import io.restassured.builder.RequestSpecBuilder;
