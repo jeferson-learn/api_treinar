@@ -1,8 +1,10 @@
 package TesteXML;
 
+import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.http.ContentType;
+import io.restassured.matcher.RestAssuredMatchers;
 import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
@@ -36,12 +38,13 @@ public class FirstTest {
     public void criarContatoComObjetoXml(){
         id = given()
                 .spec(requestSpec)
+                .log().all()
             .when()
                 .post()
             .then()
                 .log().body()
                 .spec(responseSpec)
-//                .body(.matchesJsonSchemaInClasspath("Schemas" + File.separator + "XmlSchema.xsd"))
+                .body(RestAssuredMatchers.matchesXsdInClasspath("Schemas" + File.separator + "XmlSchema.xsd"))
                 .and()
                 .extract().path("data.id");
 
