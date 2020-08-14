@@ -1,0 +1,13 @@
+instalar allure:
+
+abrir PowerShell como executar ADM
+
+1* Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+2* iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
+3* scoop install openssh
+4* scoop install git
+5* scoop install allure
+
+abrir relatorio:
+1* abrir git bash local projeto
+2* allure serve allure-results
